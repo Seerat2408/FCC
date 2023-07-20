@@ -1,0 +1,26 @@
+df = pd.read_csv(r"C:\Users\pc\Downloads\adult.data.csv\adult.data.csv")
+df.head()
+df['race'].value_counts()
+df[df['sex'] == 'Male']['age'].mean()
+len(df[df['education'] == "Bachelors"]) / len(df) * 100
+ae_count = len(df[(df['education'].isin(["Bachelors", "Masters", "Doctorate"])) 
+                                  & (df['salary'] == ">50K")])
+percentage_ae = (ae_count / len(df)) * 100
+print(percentage_ae)
+ae_count = len(df[(df['education'].isin(["Bachelors", "Masters", "Doctorate"])) 
+                                  & (df['salary'] == ">50K")])
+percentage_ae = (ae_count / len(df)) * 100
+print(percentage_ae)
+df['hours-per-week'].min()
+min_hours_workers = len(df[df['hours-per-week'] == df['hours-per-week'].min()])
+min_hours_income = len(df[(df['hours-per-week'] == df['hours-per-week'].min()) & (df['salary'] == '>50K')])
+percentage_min_hours = (min_hours_income / min_hours_workers) * 100
+print(percentage_min_hours)
+high_income_country = (df[df['salary'] == '>50K']['native-country'].value_counts() / df['native-country'].value_counts()) * 100
+country_high_income = high_income_country.idxmax()
+percentage_workers = high_income_country.max()
+print(f"The country is {country_high_income}")
+print(f"The percentage is {percentage_workers:.2f}%")
+hi_occupation = df[(df['salary'] == '>50K') & (df['native-country'] == 'India')]['occupation']
+most_popular_occ = hi_occupation.value_counts().idxmax()
+most_popular_occ
